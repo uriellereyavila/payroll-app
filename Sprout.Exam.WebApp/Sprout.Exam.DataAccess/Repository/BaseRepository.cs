@@ -50,9 +50,13 @@ namespace Sprout.Exam.DataAccess.Repository
             return await this.context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(TEntity obj, bool autoSave = true)
+        public async Task UpdateAsync(TEntity obj, bool autoSave = true)
         {
-            throw new NotImplementedException();
+            DBSet.Update(obj);
+            if (autoSave)
+            {
+                await SaveChangesAsync();
+            }
         }
 
         protected virtual void Dispose(bool disposing)

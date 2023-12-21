@@ -10,7 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sprout.Exam.Common.Models.Entities;
-using Sprout.Exam.WebApp.Data;
+using Sprout.Exam.DataAccess;
+using Sprout.Exam.DataAccess.Extension;
 
 namespace Sprout.Exam.WebApp
 {
@@ -37,6 +38,8 @@ namespace Sprout.Exam.WebApp
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+            services.RegisterRepositories();
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
